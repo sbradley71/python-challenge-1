@@ -228,19 +228,37 @@ print("--------------------------|--------|----------")
   #  item_name=
         #print(f"{key}: {value}")
     #print("------")  
+for order in Order_list:
+    Item_name = order["Item name"]
+    price = order["Price"]
+    quantity = order["Quantity"]
+    quantity_str = str(quantity)
 
     # 7. Store the dictionary items as variables
 
-
     # 8. Calculate the number of spaces for formatted printing
+    string1 = "--------------------------"
+    string2 = "--------"
+    string3 = "----------"
+    spaces_length_name = len(string1)
 
+    spaces_length_price = len(string2)
+    spaces_length_quantity = len(string3)
+
+
+    spaces_name = " " * (spaces_length_name - len(Item_name))
+    spaces_price = " " * (spaces_length_price-len(price))
+    spaces_quantity = " " * (spaces_length_quantity-len(quantity_str))
 
     # 9. Create space strings
 
 
     # 10. Print the item name, price, and quantity
-
+    print(f"{Item_name}{spaces_name}| ${price}{spaces_price}| {quantity}")
 
 # 11. Calculate the cost of the order using list comprehension
 # Multiply the price by quantity for each item in the order list, then sum()
 # and print the prices.
+    order_prices = [item['price'] * item['quantity'] for item in Order_list]
+    total_cost = sum(order_prices)
+    print ("Total cost of the order: $", total_cost)
