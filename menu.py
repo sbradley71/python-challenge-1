@@ -55,18 +55,18 @@ receipt_dashes = "-" * 46
 # menu item name, item price, and quantity ordered
 Order_list=[]
 
-[
-    {
-        "Item name": "string",
-        "Price": float,
-        "Quantity": int
-    },
-    {
-        "Item name":"string",
-        "Price": float,
-        "Quantity": int
-    },
-]
+#[
+    #{
+        #"Item name": "string",
+        #"Price": float,
+        #"Quantity": int
+    #},
+   # {
+       # "Item name":"string",
+        #"Price": float,
+        #"Quantity": int
+   # },
+#]
 
 
 # Launch the store and present a greeting to the customer
@@ -149,7 +149,8 @@ while place_order:
             if menu_selection in menu_items.keys():
                     # Store the item name as a variable
                 menu_item=menu_items[menu_selection]["Item name"]
-
+                menu_item_price=menu_items[menu_selection]["Price"]
+                
                     # Ask the customer for the quantity of the menu item
                 Quantity = input ("Please enter the quantity you want: ")
                 if not Quantity.isdigit():
@@ -159,8 +160,10 @@ while place_order:
                 Quantity = int(Quantity)
 
                 # Add the item name, price, and quantity to the order list
-                print (menu_items.keys())
-                Order_list.append({"Item name": menu_item, "Quantity": Quantity, "Price": menu_items[menu_selection]})
+                #print (menu_items.keys())
+              
+                Order_list.append({"Item name": menu_item, "Quantity": Quantity, "Price": menu_item_price})
+                #Order_list.append({"Item name": menu_item, "Quantity": Quantity, "Price": value]})
 
                     # Tell the customer that their input isn't valid
             else:
@@ -218,7 +221,7 @@ while place_order:
 print("This is what we are preparing for you.\n")
 
 # Uncomment the following line to check the structure of the order
-print(Order_list)
+#print(Order_list)
 
 print("Item name                 | Price  | Quantity")
 print("--------------------------|--------|----------")
@@ -238,7 +241,7 @@ for order in Order_list:
 
     # 8. Calculate the number of spaces for formatted printing
     string1 = "--------------------------"
-    string2 = "--------"
+    string2 = "------"
     string3 = "----------"
     spaces_length_name = len(string1)
 
@@ -247,7 +250,8 @@ for order in Order_list:
 
 
     spaces_name = " " * (spaces_length_name - len(Item_name))
-    spaces_price = " " * (spaces_length_price-len(price))
+    float_str = str(price)
+    spaces_price = " " * (spaces_length_price-len(float_str))
     spaces_quantity = " " * (spaces_length_quantity-len(quantity_str))
 
     # 9. Create space strings
@@ -259,6 +263,7 @@ for order in Order_list:
 # 11. Calculate the cost of the order using list comprehension
 # Multiply the price by quantity for each item in the order list, then sum()
 # and print the prices.
-    order_prices = [item['price'] * item['quantity'] for item in Order_list]
-    total_cost = sum(order_prices)
-    print ("Total cost of the order: $", total_cost)
+    
+total_cost = sum(item["Price"] * item["Quantity"] for item in Order_list)
+
+print ("Total cost of the order: $", total_cost)
